@@ -1,0 +1,28 @@
+{
+  "name": "mu-jquery-widget-director",
+  "version": "0.0.1",
+  "description": "mu-jquery-widget director widget",
+  "main": "",
+  "scripts": {
+    "release": "standard-version"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mu-lib/mu-jquery-widget-director.git"
+  },
+  "author": "Mikael Karon <mikael@karon.se>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mu-lib/mu-jquery-widget-director/issues"
+  },
+  "homepage": "https://github.com/mu-lib/mu-jquery-widget-director#readme",
+  "dependencies": {
+    "director": "^1.2.8",
+    "mu-jquery-widget": "^14.0.0"
+  },
+  "devDependencies": {
+    "jquery": "^3.2.1",
+    "mu-jquery-app": "^17.0.3",
+    "standard-version": "^4.0.0"
+  }
+}
