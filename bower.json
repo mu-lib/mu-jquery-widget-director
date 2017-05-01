@@ -15,11 +15,11 @@
     "examples"
   ],
   "dependencies": {
-    "mu-jquery-widget": "^14.0.0",
+    "mu-jquery-widget": "^17.0.3",
     "director": "^1.2.8"
   },
   "devDependencies": {
     "jquery": "^3.2.1",
-    "mu-jquery-app": "^17.0.3"
+    "mu-jquery-app": "^20.0.0"
   }
 }
