@@ -1,17 +1,12 @@
-(function (modules, factory) {
-  var root = this;
+(function (root, factory) {
   if (typeof define === "function" && define.amd) {
-    define(modules, factory);
+    define(["./create", "mu-jquery-widget/widget", "Router"], factory);
   } else if (typeof module === "object" && module.exports) {
-    module.exports = factory.apply(root, modules.map(require));
+    module.exports = factory(require("./create"), require("mu-jquery-widget/widget"), require("Router"));
   } else {
-    root["mu-jquery-widget-director/widget"] = factory.apply(root, modules.map(function (m) {
-      return this[m] || root[m.replace(/^\./, "mu-jquery-widget-director")];
-    }, {
-        "Router": root.Router
-      }));
+    root["mu-jquery-widget-director/widget"] = factory(root["mu-jquery-widget-director//create"], root["mu-jquery-widget/widget"], root.Router);
   }
-})(["./create", "mu-jquery-widget/widget", "Router"], function (create, widget, Router) {
+})(this, function (create, widget, Router) {
   return create(widget.concat(), {
     "on/initialize": function () {
       var me = this;
@@ -22,7 +17,13 @@
         routes[go.route] = $.proxy(go.value, me);
       });
 
-      me.router = new Router(routes).init();
+      var router = new Router(routes)
+        .configure(me.$element.data("mu-jquery-widget-director"))
+        .init();
+
+      ["configure", "param", "on", "path", "dispatch", "mount", "getRoute", "setRoute",].forEach(function (method) {
+        me[me[method] ? method + "$director" : method] = $.proxy(router[method], router);
+      });
     }
   });
 });

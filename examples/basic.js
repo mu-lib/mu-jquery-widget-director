@@ -1,17 +1,14 @@
-(function (modules, factory) {
-  var root = this;
+(function (root, factory) {
   if (typeof define === "function" && define.amd) {
-    define(modules, factory);
+    define(["../widget"], factory);
   } else if (typeof module === "object" && module.exports) {
-    module.exports = factory.apply(root, modules.map(require));
+    module.exports = factory(require("../widget"));
   } else {
-    root["mu-jquery-widget-director/examples/basic"] = factory.apply(root, modules.map(function (m) {
-      return this[m] || root[m.replace(/^\.{2}/, "mu-jquery-widget-director")];
-    }));
+    root["mu-jquery-widget-director/examples/basic"] = factory(root["mu-jquery-widget-director/widget"]);
   }
-})(["../widget"], function (widget) {
+})(this, function (widget) {
   return widget.extend({
-    "go/(home|away)": function(destination) {
+    "go/(home|away)": function (destination) {
       console.log("went " + destination);
     }
   });

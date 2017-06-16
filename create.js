@@ -1,14 +1,11 @@
-(function (modules, factory) {
-  var root = this;
+(function (root, factory) {
   if (typeof define === "function" && define.amd) {
-    define(modules, factory);
+    define(["mu-jquery-widget/create", "./go"], factory);
   } else if (typeof module === "object" && module.exports) {
-    module.exports = factory.apply(root, modules.map(require));
+    module.exports = factory(require("mu-jquery-widget/create"), require("./go"));
   } else {
-    root["mu-jquery-widget-director/create"] = factory.apply(root, modules.map(function (m) {
-      return root[m.replace(/^\./, "mu-jquery-widget-director")];
-    }));
+    root["mu-jquery-widget-director/create"] = factory(root["mu-jquery-widget/create"], root["mu-jquery-widget-director/go"]);
   }
-})(["mu-jquery-widget/create", "./go"], function (create, go) {
+})(this, function (create, go) {
   return create.extend(go);
 });
